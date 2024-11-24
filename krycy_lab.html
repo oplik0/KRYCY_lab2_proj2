@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>krycy_lab.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="krycy-laboratorium-2--projekt-2-budowa-systemu-analizy-sieciowej--poc"><strong>[KRYCY] Laboratorium 2 + Projekt 2: Budowa systemu analizy sieciowej + PoC</strong></h1>
+<hr>
+<h2 id="1-cel-zaj%C4%99%C4%87"><strong>1. Cel zajęć</strong></h2>
+<p>Zadaniem studentów jest stworzenie prototypowego systemu analizy sieciowej w konwencji <strong>Proof of Concept (PoC)</strong>, który:</p>
+<ol>
+<li>Analizuje dane sieciowe na poziomie flow.</li>
+<li>Wykorzystuje niektóre zasady <strong>Detection as a Code</strong>.</li>
+<li>Integruje metody detekcji regułowej i uczenia maszynowego.</li>
+<li>Wzbogaca dane z użyciem narzędzi Threat Intelligence.</li>
+<li>Generuje raporty z analizą i wizualizacjami.</li>
+</ol>
+<p>Nie wszystkie wymagania muszą zostać w pełni zrealizowane (chodzi o konkretne wymagania, które są podane w tabeli pod koniec instrukcji), ale należy:</p>
+<ul>
+<li><strong>Zmierzyć się z każdym wymaganiem</strong>,</li>
+<li>Zaproponować <strong>alternatywy</strong> w przypadku trudności.</li>
+</ul>
+<hr>
+<h2 id="2-wprowadzenie-detection-as-a-code"><strong>2. Wprowadzenie: Detection as a Code</strong></h2>
+<h3 id="czym-jest-detection-as-a-code"><strong>Czym jest Detection as a Code?</strong></h3>
+<p>Detection as a Code to nowoczesne podejście, w którym procesy detekcji zagrożeń są wyrażane jako logika programistyczna, zamiast statycznych reguł w narzędziach wykrywania. Dzięki temu możliwa jest dynamiczna analiza i integracja zaawansowanych technik, takich jak przetwarzanie pakietów czy uczenie maszynowe.</p>
+<p>Kluczowe cechy:</p>
+<ol>
+<li><strong>Automatyzacja</strong>: Reguły detekcyjne mogą być łatwo wdrażane, modyfikowane i testowane w czasie rzeczywistym.</li>
+<li><strong>Elastyczność</strong>: Możliwość stosowania reguł napisanych w Pythonie do analizy ruchu sieciowego lub logów.</li>
+<li><strong>Integracja z innymi technologiami</strong>: Łączenie logiki detekcyjnej z analizą pakietów, enrichmentem danych, czy modelami uczenia maszynowego.</li>
+<li><strong>Programowalność</strong>: Zamiast ograniczać się do sztywnego formatu reguł (np. YAML), można dynamicznie implementować bardziej złożone warunki w Pythonie.</li>
+</ol>
+<hr>
+<h3 id="przyk%C5%82ad-implementacja-detection-as-a-code-przy-u%C5%BCyciu-nfstream"><strong>Przykład: Implementacja Detection as a Code przy użyciu NFStream</strong></h3>
+<p>W tym przykładzie analiza odbywa się na poziomie flow z użyciem NFStream, a wykrywanie zagrożeń jest realizowane za pomocą funkcji Python.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> nfstream <span class="hljs-keyword">import</span> NFStreamer
+
+<span class="hljs-comment"># Definicja funkcji detekcyjnej</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">detect_large_flow</span><span class="hljs-params">(flow)</span>:</span>
+    <span class="hljs-string">"""
+    Wykrywa podejrzanie duży ruch sieciowy wysyłany do konkretnego portu.
+    """</span>
+    <span class="hljs-keyword">if</span> flow.destination_port == <span class="hljs-number">443</span> <span class="hljs-keyword">and</span> flow.bytes_sent &gt; <span class="hljs-number">1</span>_000_000:
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>, <span class="hljs-string">f"Suspicious large flow to port 443 from <span class="hljs-subst">{flow.source_ip}</span>"</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>, <span class="hljs-literal">None</span>
+
+<span class="hljs-comment"># Przetwarzanie pliku PCAP</span>
+streamer = NFStreamer(source=<span class="hljs-string">"sample.pcap"</span>)
+
+<span class="hljs-comment"># Analiza flow</span>
+<span class="hljs-keyword">for</span> flow <span class="hljs-keyword">in</span> streamer:
+    result, message = detect_large_flow(flow)
+    <span class="hljs-keyword">if</span> result:
+        print(<span class="hljs-string">f"ALERT: <span class="hljs-subst">{message}</span>"</span>)
+</div></code></pre>
+<p><strong>Wyjaśnienie</strong>:</p>
+<ol>
+<li>
+<p><strong>NFStream</strong>:</p>
+<ul>
+<li>Biblioteka do analizy ruchu sieciowego na poziomie flow.</li>
+<li>Pozwala odczytywać statystyki, takie jak liczba przesłanych bajtów, port docelowy czy adres źródłowy.</li>
+</ul>
+</li>
+<li>
+<p><strong>Funkcja detekcyjna</strong>:</p>
+<ul>
+<li>Analizuje flow, sprawdzając, czy liczba przesłanych bajtów na port HTTPS (443) przekracza 1 MB.</li>
+<li>W przypadku wykrycia podejrzanego ruchu generuje alert z odpowiednią informacją.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="przyk%C5%82ad-detection-as-a-code-przy-u%C5%BCyciu-scapy"><strong>Przykład: Detection as a Code przy użyciu scapy</strong></h3>
+<p>W tym przykładzie analizujemy ruch na poziomie pakietów za pomocą scapy, sprawdzając określone pola pakietów.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scapy.all <span class="hljs-keyword">import</span> rdpcap
+
+<span class="hljs-comment"># Definicja funkcji detekcyjnej</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">detect_http_get</span><span class="hljs-params">(packet)</span>:</span>
+    <span class="hljs-string">"""
+    Wykrywa żądania HTTP GET w pakietach.
+    """</span>
+    <span class="hljs-keyword">if</span> packet.haslayer(<span class="hljs-string">"TCP"</span>) <span class="hljs-keyword">and</span> packet[<span class="hljs-string">"TCP"</span>].dport == <span class="hljs-number">80</span>:
+        <span class="hljs-keyword">if</span> <span class="hljs-string">b"GET"</span> <span class="hljs-keyword">in</span> bytes(packet.payload):
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>, <span class="hljs-string">f"HTTP GET detected from <span class="hljs-subst">{packet[<span class="hljs-string">'IP'</span>].src}</span> to <span class="hljs-subst">{packet[<span class="hljs-string">'IP'</span>].dst}</span>"</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>, <span class="hljs-literal">None</span>
+
+<span class="hljs-comment"># Wczytanie pliku PCAP</span>
+packets = rdpcap(<span class="hljs-string">"sample.pcap"</span>)
+
+<span class="hljs-comment"># Analiza pakietów</span>
+<span class="hljs-keyword">for</span> packet <span class="hljs-keyword">in</span> packets:
+    result, message = detect_http_get(packet)
+    <span class="hljs-keyword">if</span> result:
+        print(<span class="hljs-string">f"ALERT: <span class="hljs-subst">{message}</span>"</span>)
+</div></code></pre>
+<p><strong>Wyjaśnienie</strong>:</p>
+<ol>
+<li>
+<p><strong>Scapy</strong>:</p>
+<ul>
+<li>Narzędzie do manipulacji i analizy pakietów na poziomie L3/L4.</li>
+<li>Pozwala na odczytywanie i modyfikowanie pól w pakietach.</li>
+</ul>
+</li>
+<li>
+<p><strong>Funkcja detekcyjna</strong>:</p>
+<ul>
+<li>Sprawdza, czy pakiet jest żądaniem HTTP GET na porcie 80 (HTTP).</li>
+<li>Jeśli tak, generuje alert z informacją o adresie źródłowym i docelowym.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="dlaczego-detection-as-a-code"><strong>Dlaczego Detection as a Code?</strong></h3>
+<ul>
+<li><strong>Programowalność</strong>: Logika oparta na Pythonie pozwala na elastyczność i integrację różnych metod detekcji.</li>
+<li><strong>Skalowalność</strong>: Możliwość analizowania zarówno pojedynczych pakietów, jak i flow.</li>
+<li><strong>Praktyczność</strong>: W przeciwieństwie do statycznych formatów, jak Sigma, Python umożliwia dynamiczną analizę w czasie rzeczywistym.</li>
+</ul>
+<hr>
+<h2 id="3-symulacja-ruchu-sieciowego"><strong>3. Symulacja ruchu sieciowego</strong></h2>
+<h3 id="dlaczego-potrzebujemy-symulacji-ruchu-sieciowego"><strong>Dlaczego potrzebujemy symulacji ruchu sieciowego?</strong></h3>
+<p>Aby udowodnić, że wymagania stawiane systemowi analizy sieciowej są spełnione, potrzebujemy danych, które będą analizowane w naszym narzędziu. Surowe dane w formacie PCAP pozwalają na odtworzenie realistycznych scenariuszy ruchu sieciowego. Symulacja pozwala na:</p>
+<ol>
+<li><strong>Testowanie detekcji regułowej</strong>: Na przykład, czy określone wzorce ruchu są poprawnie identyfikowane jako zagrożenia.</li>
+<li><strong>Walidację funkcjonalności systemu</strong>: Upewnienie się, że różne komponenty narzędzia, takie jak analiza flow czy enrichment danych, działają poprawnie.</li>
+<li><strong>Demonstrację spełnienia wymagań</strong>: Prezentacja działania narzędzia na rzeczywistych lub symulowanych danych.</li>
+</ol>
+<p>Symulacje mogą być przeprowadzane przy użyciu:</p>
+<ol>
+<li><strong>Odtwarzania ruchu z plików PCAP za pomocą <code>tcpreplay</code></strong>.</li>
+<li><strong>Generowania pakietów w czasie rzeczywistym za pomocą <code>scapy</code></strong>.</li>
+</ol>
+<hr>
+<h3 id="czym-jest-tcpreplay"><strong>Czym jest tcpreplay?</strong></h3>
+<p><code>tcpreplay</code> to narzędzie umożliwiające odtwarzanie rzeczywistego ruchu sieciowego z plików PCAP. Dzięki temu można symulować różne scenariusze ruchu w kontrolowanych warunkach laboratoryjnych.</p>
+<h3 id="przyk%C5%82ad-u%C5%BCycia"><strong>Przykład użycia</strong></h3>
+<ol>
+<li>
+<p>Pobierz przykładowy plik PCAP:</p>
+<ul>
+<li>Skorzystaj z zasobu: <a href="https://mcfp.felk.cvut.cz/publicDatasets/">https://mcfp.felk.cvut.cz/publicDatasets/</a>.</li>
+</ul>
+</li>
+</ol>
+<p>Istotne jest to, aby działać na plikach pcap w formacie surowym i przetwarzać je dopiero w tworzonym skrypcie.</p>
+<ol start="2">
+<li>Odtwórz ruch na wybranym interfejsie:</li>
+</ol>
+<pre class="hljs"><code><div>tcpreplay -i eth0 sample.pcap
+</div></code></pre>
+<p>W powyższym przykładzie:</p>
+<ul>
+<li><code>-i</code> – określa interfejs, na którym będzie odtwarzany ruch.</li>
+<li><code>sample.pcap</code> – ścieżka do pliku PCAP.</li>
+</ul>
+<ol start="3">
+<li>Ogranicz rodzaj odtwarzanego ruchu za pomocą filtru BPF:</li>
+</ol>
+<pre class="hljs"><code><div>tcpreplay -i eth0 -F &quot;tcp port 80&quot; sample.pcap
+</div></code></pre>
+<p>Filtr BPF pozwala symulować wyłącznie wybrany ruch, np. HTTP (<code>tcp port 80</code>).</p>
+<ol start="4">
+<li>Przyspieszanie odtwarzania ruchu:</li>
+</ol>
+<pre class="hljs"><code><div>tcpreplay -i eth0 --multiplier=10 sample.pcap
+</div></code></pre>
+<p>Opcja <code>--multiplier=10</code> zwiększa szybkość odtwarzania ruchu dziesięciokrotnie.</p>
+<ol start="5">
+<li>Zatrzymanie symulacji:</li>
+</ol>
+<pre class="hljs"><code><div>Naciśnij `Ctrl+C` w terminalu, aby przerwać symulację w dowolnym momencie.
+</div></code></pre>
+<hr>
+<h3 id="generowanie-ruchu-w-czasie-rzeczywistym-za-pomoc%C4%85-scapy"><strong>Generowanie ruchu w czasie rzeczywistym za pomocą scapy</strong></h3>
+<p>W niektórych przypadkach możemy nie mieć odpowiedniego pliku PCAP lub potrzebujemy specyficznego ruchu sieciowego, który pasuje do naszych reguł detekcyjnych. W takich sytuacjach <code>scapy</code> pozwala na generowanie i wysyłanie pakietów bezpośrednio na interfejs sieciowy.</p>
+<p>Przykład: Wysyłanie żądania HTTP GET na port 80.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scapy.all <span class="hljs-keyword">import</span> IP, TCP, send
+
+<span class="hljs-comment"># Tworzenie pakietu IP + TCP</span>
+packet = IP(dst=<span class="hljs-string">"192.168.1.10"</span>) / TCP(dport=<span class="hljs-number">80</span>) / <span class="hljs-string">b"GET / HTTP/1.1\r\nHost: example.com\r\n\r\n"</span>
+
+<span class="hljs-comment"># Wysyłanie pakietu</span>
+send(packet)
+
+print(<span class="hljs-string">"Packet sent to 192.168.1.10 on port 80"</span>)
+</div></code></pre>
+<p><strong>Wyjaśnienie</strong>:</p>
+<ol>
+<li><strong>IP(dst=&quot;192.168.1.10&quot;)</strong>: Określa adres docelowy.</li>
+<li><strong>TCP(dport=80)</strong>: Określa port docelowy (HTTP).</li>
+<li><strong>send(packet)</strong>: Wysyła utworzony pakiet przez domyślny interfejs sieciowy.</li>
+</ol>
+<hr>
+<h3 id="dlaczego-scapy"><strong>Dlaczego scapy?</strong></h3>
+<ol>
+<li><strong>Elastyczność</strong>: Można tworzyć pakiety na poziomie IP, TCP, UDP i wyższych warstw.</li>
+<li><strong>Kontrola</strong>: Możliwość precyzyjnego ustawiania pól w pakietach, co jest trudne do osiągnięcia w gotowych plikach PCAP.</li>
+<li><strong>Szybkość testów</strong>: Idealne do testowania specyficznych reguł detekcyjnych w czasie rzeczywistym.</li>
+</ol>
+<h2 id="4-zadanie-budowa-systemu-analizy-sieciowej"><strong>4. Zadanie: Budowa systemu analizy sieciowej</strong></h2>
+<p><strong>Cel:</strong> stwórz system, który:</p>
+<ol>
+<li>Analizuje flow z plików PCAP (co najmniej NFStream).</li>
+<li>Wykorzystuje w pewnym stopniu Detection as a Code.</li>
+<li>Integruje Machine Learning do klasyfikacji ruchu.</li>
+<li>Wzbogaca dane za pomocą Threat Intelligence (np. reputacja IP, geolokalizacja).</li>
+<li>Generuje raporty z wynikami analizy, wzbogacone wizualizacjami.</li>
+</ol>
+<hr>
+<h3 id="lab-2-funkcjonalno%C5%9Bci-podstawowe"><strong>Lab 2: Funkcjonalności podstawowe</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>ID</strong></th>
+<th><strong>Kategoria</strong></th>
+<th><strong>Opis wymagania</strong></th>
+<th><strong>Typ</strong></th>
+<th><strong>Proponowany sposób udowodnienia/ dodatkowe komentarze</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A.1</strong></td>
+<td>Analiza flow</td>
+<td>Wczytywanie plików PCAP przy użyciu NFStream.</td>
+<td>Must-have</td>
+<td>Implementacja/inne wizualizacje w raporcie z narzędzia.</td>
+</tr>
+<tr>
+<td><strong>A.2</strong></td>
+<td>Analiza flow</td>
+<td>Dla wczytanych przepływów wyświetlanie podsumowania statystyk flow, takich jak podsumowanie ilości przesłanych pakietów pomiędzy danymi hostami.</td>
+<td>Must-have</td>
+<td>Musi znajdować się w raporcie generowanym przez narzędzie.</td>
+</tr>
+<tr>
+<td><strong>D.1</strong></td>
+<td>Detection as a Code</td>
+<td>Implementacja reguł detekcyjnych w Pythonie, np. jako funkcje w pliku <code>detection_rules.py</code>.</td>
+<td>Must-have</td>
+<td>Napisanie przykładowej reguły i symulacja przy wykorzystaniu tcpreplay lub scapy wywołania alertu.</td>
+</tr>
+<tr>
+<td><strong>V.1</strong></td>
+<td>Wizualizacja</td>
+<td>Wykres liczby wykrytych zagrożeń w czasie (np. wykres słupkowy).</td>
+<td>Must-have</td>
+<td>Alternatywa: Zamiast wykresów – podsumowanie w tabeli tekstowej lub inna wizualizacja w raporcie z narzędzia.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="projekt-2-funkcjonalno%C5%9Bci-zaawansowane"><strong>Projekt 2: Funkcjonalności zaawansowane</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>ID</strong></th>
+<th><strong>Kategoria</strong></th>
+<th><strong>Opis wymagania</strong></th>
+<th><strong>Typ</strong></th>
+<th><strong>Proponowany sposób udowodnienia/ dodatkowe komentarze</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>D.2</strong></td>
+<td>Detection as a Code</td>
+<td>Wczytywanie reguł w formacie Sigma (np. z użyciem PySigma).</td>
+<td>Must-have</td>
+<td>Demonstracja wczytywania reguły Sigma, przetwarzania jej w Pythonie i wywołania detekcji zgodnej z tą regułą.</td>
+</tr>
+<tr>
+<td><strong>ML.1</strong></td>
+<td>Machine Learning</td>
+<td>Klasyfikacja flow na podstawie cech, takich jak czas trwania, liczba pakietów, protokół (np. z użyciem <code>scikit-learn</code>).</td>
+<td>Must-have</td>
+<td>Raport generowany przez narzędzie zawiera output z modelu, np. w postaci pewności zwróconej przez model lub wizualizacji działania modelu.</td>
+</tr>
+<tr>
+<td><strong>ML.2</strong></td>
+<td>Machine Learning</td>
+<td>Redukcja liczby fałszywych pozytywów (FPR) za pomocą oceny jakości modelu i tuningu hiperparametrów.</td>
+<td>Must-have</td>
+<td>Liczenie metryk takich jak FPR, TPR lub wizualizacja macierzy konfuzji dla testowanego przypadku.</td>
+</tr>
+<tr>
+<td><strong>ML.3</strong></td>
+<td>Machine Learning</td>
+<td>Narzędzie powinno pozwalać na trenowanie zawartego w nim modelu ML za pomocą nowych danych dostarczonych przez użytkownika (np. przez CLI).</td>
+<td>Nice-to-have</td>
+<td>Demonstracja możliwości wgrania nowych danych w formacie CSV przez użytkownika, ich przetwarzania i ponownego trenowania modelu.</td>
+</tr>
+<tr>
+<td><strong>E.1</strong></td>
+<td>Enrichment</td>
+<td>Pobieranie podstawowych informacji o IP/domenach, np. z <code>geopy</code> lub innych źródeł Threat Intelligence przy użyciu API.</td>
+<td>Must-have</td>
+<td>Enrichment widoczny w raporcie generowanym przez narzędzie.</td>
+</tr>
+<tr>
+<td><strong>V.2</strong></td>
+<td>Wizualizacja</td>
+<td>Mapa geograficzna przedstawiająca lokalizację adresów IP wykrytych jako podejrzane.</td>
+<td>Nice-to-have</td>
+<td>Wizualizacja lokalizacji IP na mapie, np. przy użyciu bibliotek <code>folium</code> lub <code>plotly</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="uwagi-szczeg%C3%B3lne-dotycz%C4%85ce-realizacji-zadania"><strong>Uwagi szczególne dotyczące realizacji zadania</strong></h3>
+<ol>
+<li>
+<p><strong>Prototypowanie w Jupyter Notebook</strong>:</p>
+<ul>
+<li>Jupyter Notebook powinień służyć głównie do prototypowania i testowania poszczególnych modułów (np. funkcji detekcyjnych, modeli ML, wizualizacji).</li>
+<li>Po opracowaniu działającego prototypu, logika powinna być przenoszona do głównego rozwiązania jako część pełnego systemu.</li>
+</ul>
+</li>
+<li>
+<p><strong>Interakcja z użytkownikiem</strong>:</p>
+<ul>
+<li>Warto wykorzystać bibliotekę <code>click</code> do stworzenia interaktywnego CLI (Command Line Interface), które umożliwi użytkownikowi wygodne uruchamianie i konfigurację narzędzia.</li>
+</ul>
+</li>
+<li>
+<p><strong>Wymagania nice to have</strong>:</p>
+<ul>
+<li>Są to dodatkowe funkcjonalności, które nie są obowiązkowe, ale ich implementacja może dodatkowo podnieść ocenę w przypadku innych braków.</li>
+<li>Im więcej funkcjonalności, tym lepiej, ale tylko w sytuacji, gdy są one wdrożone poprawnie.</li>
+</ul>
+</li>
+<li>
+<p><strong>Elastyczność w realizacji wymagań</strong>:</p>
+<ul>
+<li>Jeśli realizacja jakiegoś wymagania okazuje się trudna lub niepraktyczna, należy zaproponować dobrze uzasadnioną alternatywę.</li>
+<li>Kluczowym celem jest dojście do konsensusu, tak jak w rzeczywistych projektach, a nie realizacja wymagań za wszelką cenę.</li>
+</ul>
+</li>
+<li>
+<p><strong>Raport końcowy</strong>:</p>
+<ul>
+<li>Raport powinien odnosić się do każdego punktu w tabeli wymagań i zawierać dowód realizacji.</li>
+<li>Dowody mogą obejmować:
+<ul>
+<li>Screeny z działania systemu.</li>
+<li>Wycinki z kodu z objaśnieniami.</li>
+<li>Wyniki symulacji lub wizualizacje.</li>
+</ul>
+</li>
+<li>Raport musi być elegancki i przekonujący, ponieważ to on będzie głównym elementem oceny projektu. Oprócz samego spełnienia każdego z wymagań liczy się styl jego wykazania (np. to czy do symulacji ruchu sieciowego wykorzystano odpowiedni plik pcap). Raport nie musi zawierać innych elementów niż odniesienie się do każdego z wymagań.</li>
+<li>Oprócz raportu w ramach wyników prac należy dostarczyć również kod samego rozwiązania.</li>
+</ul>
+</li>
+<li>
+<p><strong>Symulacje i testy</strong>:</p>
+<ul>
+<li>Symulacje mają kluczowe znaczenie dla udowodnienia spełnienia wymagań.</li>
+<li>Należy wykorzystywać zaprezentowane techniki i narzędzia (np. <code>scapy</code>, <code>tcpreplay</code> oraz inne z przedstawionych na zajęciach notebooków).</li>
+<li>Możliwe jest użycie innych narzędzi, które pozwolą spełnić cel.</li>
+</ul>
+</li>
+</ol>
+
+</body>
+</html>
